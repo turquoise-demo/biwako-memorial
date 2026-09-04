@@ -1,0 +1,15 @@
+# 家族葬会館 びわこメモリアルホール
+User-agent: *
+Allow: /
+
+# AIクローラーにも情報提供を許可（LLMO）
+User-agent: GPTBot
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+
+Sitemap: https://www.biwako-memorial.jp/sitemap.xml
