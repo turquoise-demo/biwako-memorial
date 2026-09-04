@@ -46,47 +46,18 @@
  },
  "openingHoursSpecification": {
   "@type": "OpeningHoursSpecification",
-  "dayOfWeek": [
-   "Monday",
-   "Tuesday",
-   "Wednesday",
-   "Thursday",
-   "Friday",
-   "Saturday",
-   "Sunday"
-  ],
+  "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
   "opens": "00:00",
   "closes": "23:59"
  },
  "areaServed": [
-  {
-   "@type": "City",
-   "name": "栗東市"
-  },
-  {
-   "@type": "City",
-   "name": "草津市"
-  },
-  {
-   "@type": "City",
-   "name": "守山市"
-  },
-  {
-   "@type": "City",
-   "name": "野洲市"
-  },
-  {
-   "@type": "City",
-   "name": "湖南市"
-  },
-  {
-   "@type": "City",
-   "name": "甲賀市"
-  },
-  {
-   "@type": "AdministrativeArea",
-   "name": "滋賀県"
-  }
+  {"@type": "City", "name": "栗東市"},
+  {"@type": "City", "name": "草津市"},
+  {"@type": "City", "name": "守山市"},
+  {"@type": "City", "name": "野洲市"},
+  {"@type": "City", "name": "湖南市"},
+  {"@type": "City", "name": "甲賀市"},
+  {"@type": "AdministrativeArea", "name": "滋賀県"}
  ],
  "paymentAccepted": "現金, クレジットカード, 電子マネー",
  "image": "https://www.biwako-memorial.jp/wp-content/uploads/2023/08/storyslide2.jpg",
@@ -101,10 +72,34 @@
  "mainEntity": [
   {
    "@type": "Question",
+   "name": "病院で亡くなったら、まず何をすればいいですか？",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "まずは落ち着いてください。その場ですぐに葬儀社を決める必要はありません。当会館（0120-440-075）にお電話いただければ、寝台車で約60分を目安にお迎えにあがります。搬送をお願いした葬儀社にそのまま葬儀を頼む義務はなく、ご安置後にゆっくりご検討いただけます。"
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "病院から紹介された葬儀社に頼まないといけませんか？",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "いいえ。病院から葬儀社を紹介されても、断って構いません。搬送だけを依頼して、葬儀は別の葬儀社に頼むこともできます。ご家族が納得して選ぶことがいちばん大切です。"
+   }
+  },
+  {
+   "@type": "Question",
    "name": "まだ何も決まっていないのですが、電話しても大丈夫ですか？",
    "acceptedAnswer": {
     "@type": "Answer",
     "text": "もちろんです。「今どうすればいいか分からない」という段階でのお電話がいちばん多いです。お電話の時点でご契約は一切発生しません。まずは状況をお聞かせください。"
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "親が元気なうちに相談するのは不謹慎ではありませんか？",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "不謹慎ではありません。事前のご相談は、ご本人の希望を叶え、ご家族が慌てず落ち着いてお見送りするための準備です。実際、当会館へのご相談の多くは、親御さまがお元気なうちのお子さま世代からのものです。"
    }
   },
   {
@@ -175,17 +170,15 @@
   1. 料金は既存サイトのプラン名（火葬式15 / 一日葬25 / 一日葬40 /
      家族葬38 / 家族葬50）から「万円」と推定して記載しています。
      税込・税別、火葬料や式場使用料の内訳を必ず実際の金額に直してください。
-     ※料金確定後、JSON-LD(FuneralHome)に "priceRange" を追加すると
-       検索結果での訴求が強くなります（未確定のため現在は未記載）。
-  1b. SEO/MEO/LLMO実装済み（2026-09-04）:
-     - JSON-LD: FuneralHome(NAP/座標/24時間/対応エリア) + FAQPage(7問) + WebSite
-     - canonical / OGP / Twitterカード / geoメタ
-     - 同梱: robots.txt / sitemap.xml / llms.txt（サーバー直下に配置）
-     - MEOの本体はGoogleビジネスプロフィール登録 → GBP登録手順.md 参照
      → 該当箇所は「data-check="price"」で検索できます。
-  2. 画像は現行サイトのURLを直接参照しています（表示確認用）。
+  2. 費用シミュレーションの変動費（お布施・火葬場使用料・お食事返礼の
+     目安額）はJS内の SIM_RATES にまとめてあります。実額に合わせて
+     必ず調整してください（data-check="price" 付き）。
+  3. 画像は現行サイトのURLを直接参照しています（表示確認用）。
      本番では images/ に保存してローカル参照に切り替えてください。
-  3. お客様の声は現行サイトの掲載内容を要約しています。
+  4. お客様の声は現行サイトの掲載内容を要約しています。
+  5. SEO/MEO/LLMO実装済み: JSON-LD(FuneralHome/FAQ 10問/WebSite)、
+     robots.txt / sitemap.xml / llms.txt 同梱。GBP登録手順.md 参照。
   ============================================================
 -->
 
@@ -202,17 +195,18 @@
   --text-l:#6E665D;
   --line:#E3DAD0;
   --accent:#B8544B;     /* 緊急・強調（落ち着いた朱） */
-  --mincho:"Times New Roman","游明朝","Yu Mincho","YuMincho","ヒラギノ明朝 ProN","Hiragino Mincho ProN","HGS明朝E","ＭＳ Ｐ明朝",serif;
+  --mincho:"游明朝","Yu Mincho","YuMincho","ヒラギノ明朝 ProN","Hiragino Mincho ProN","HGS明朝E","ＭＳ Ｐ明朝",serif;
   --gothic:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic Medium","游ゴシック Medium",meiryo,sans-serif;
   --shadow:0 2px 20px rgba(74,62,49,.08);
   --shadow-l:0 8px 40px rgba(74,62,49,.14);
+  --fs:17px;            /* 50代以上でも読みやすい基準サイズ */
 }
+html[data-fs="large"]{--fs:19.5px}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-padding-top:76px;-webkit-text-size-adjust:100%}
+html{scroll-behavior:smooth;scroll-padding-top:84px;-webkit-text-size-adjust:100%}
 body{
   font-family:var(--gothic);color:var(--text);background:var(--paper);
-  line-height:1.9;font-size:16px;letter-spacing:.02em;
-  padding-bottom:0;overflow-x:hidden;
+  line-height:2;font-size:var(--fs);letter-spacing:.02em;overflow-x:hidden;
 }
 img{max-width:100%;height:auto;display:block}
 a{color:inherit;text-decoration:none}
@@ -220,40 +214,44 @@ a{color:inherit;text-decoration:none}
 .mincho{font-family:var(--mincho);font-weight:500}
 
 /* ============ 見出し ============ */
-.sec{padding:88px 0}
+.sec{padding:92px 0}
 .sec--tight{padding:64px 0}
-.sec-head{text-align:center;margin-bottom:48px}
-.sec-en{display:block;font-family:var(--mincho);font-size:13px;letter-spacing:.28em;color:var(--brown);margin-bottom:12px;text-transform:uppercase}
-.sec-title{font-family:var(--mincho);font-size:clamp(24px,4.4vw,36px);line-height:1.5;color:var(--brown-dd);font-weight:500}
-.sec-lead{margin-top:20px;font-size:15px;color:var(--text-l);line-height:2}
+.sec-head{text-align:center;margin-bottom:52px}
+.sec-en{display:block;font-family:var(--mincho);font-size:.76em;letter-spacing:.28em;color:var(--brown);margin-bottom:12px;text-transform:uppercase}
+.sec-title{font-family:var(--mincho);font-size:clamp(25px,4.4vw,37px);line-height:1.5;color:var(--brown-dd);font-weight:500}
+.sec-lead{margin-top:20px;font-size:.92em;color:var(--text-l);line-height:2.1}
 
 /* ============ 緊急バー ============ */
 .urgent{
   background:var(--accent);color:#fff;text-align:center;
-  padding:9px 16px;font-size:13.5px;letter-spacing:.04em;
+  padding:10px 16px;font-size:.82em;letter-spacing:.04em;
 }
 .urgent b{font-weight:700}
-.urgent a{text-decoration:underline;text-underline-offset:3px}
+.urgent a{text-decoration:underline;text-underline-offset:3px;font-weight:700}
 
 /* ============ ヘッダー ============ */
-.hd{
-  position:sticky;top:0;z-index:100;background:#fff;
-  border-bottom:1px solid var(--line);
-}
-.hd-in{display:flex;align-items:center;gap:20px;height:72px}
-.logo{display:flex;flex-direction:column;line-height:1.25}
-.logo b{font-family:var(--mincho);font-size:21px;color:var(--brown-dd);font-weight:500;letter-spacing:.06em}
-.logo span{font-size:10.5px;color:var(--text-l);letter-spacing:.08em}
-.gnav{margin-left:auto;display:flex;gap:26px}
-.gnav a{font-size:14px;color:var(--brown-dd);position:relative;padding:4px 0;white-space:nowrap}
+.hd{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid var(--line)}
+.hd-in{display:flex;align-items:center;gap:14px;height:76px}
+.logo{display:flex;flex-direction:column;line-height:1.25;flex-shrink:0}
+.logo b{font-family:var(--mincho);font-size:21px;color:var(--brown-dd);font-weight:500;letter-spacing:.06em;white-space:nowrap}
+.logo span{font-size:10.5px;color:var(--text-l);letter-spacing:.08em;white-space:nowrap}
+.gnav{margin-left:auto;display:flex;gap:16px}
+.gnav a{font-size:13.5px;color:var(--brown-dd);position:relative;padding:4px 0;white-space:nowrap}
 .gnav a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--brown);transition:width .3s}
 .gnav a:hover::after{width:100%}
-.hd-tel{text-align:right;line-height:1.2}
-.hd-tel small{display:block;font-size:10px;color:var(--accent);font-weight:700;letter-spacing:.06em}
-.hd-tel b{font-family:var(--mincho);font-size:24px;color:var(--brown-dd);letter-spacing:.02em}
+.fs-toggle{display:flex;align-items:center;border:1px solid var(--line);border-radius:4px;overflow:hidden;flex-shrink:0}
+.fs-toggle button{
+  border:0;background:#fff;cursor:pointer;
+  padding:8px 10px;color:var(--text-l);line-height:1;font-size:12px;white-space:nowrap
+}
+.fs-toggle button:last-child{font-size:14px}
+.fs-toggle button.on{background:var(--brown);color:#fff}
+.hd-tel{text-align:right;line-height:1.2;flex-shrink:0}
+.hd-tel small{display:block;font-size:10px;color:var(--accent);font-weight:700;letter-spacing:.06em;white-space:nowrap}
+.hd-tel b{font-family:var(--mincho);font-size:23px;color:var(--brown-dd);letter-spacing:.02em;white-space:nowrap}
 .hd-cta{
-  background:var(--brown);color:#fff;font-size:13.5px;padding:12px 20px;border-radius:3px;
-  white-space:nowrap;transition:background .25s
+  background:var(--brown);color:#fff;font-size:12.5px;padding:11px 14px;border-radius:3px;
+  white-space:nowrap;transition:background .25s;flex-shrink:0
 }
 .hd-cta:hover{background:var(--brown-d)}
 .burger{display:none;margin-left:auto;width:44px;height:44px;border:0;background:none;position:relative;cursor:pointer}
@@ -264,54 +262,51 @@ a{color:inherit;text-decoration:none}
 .burger.on span:nth-child(3){top:21px;transform:rotate(-45deg)}
 
 /* ============ ヒーロー ============ */
-.hero{position:relative;min-height:min(88vh,760px);display:flex;align-items:center;overflow:hidden}
+.hero{position:relative;min-height:min(86vh,740px);display:flex;align-items:center;overflow:hidden}
 .hero-bg{position:absolute;inset:0}
 .hero-bg i{
   position:absolute;inset:0;background-size:cover;background-position:center;
-  opacity:0;animation:heroFade 18s infinite;
+  opacity:0;animation:heroFade 21s infinite;
 }
 .hero-bg i:nth-child(1){background-image:url(https://www.biwako-memorial.jp/wp-content/uploads/2023/08/storyslide2.jpg);animation-delay:0s}
-.hero-bg i:nth-child(2){background-image:url(https://www.biwako-memorial.jp/wp-content/uploads/2023/08/storyslide3.jpg);animation-delay:6s}
-.hero-bg i:nth-child(3){background-image:url(https://www.biwako-memorial.jp/wp-content/uploads/2023/08/storyslide4.jpg);animation-delay:12s}
-@keyframes heroFade{0%{opacity:0;transform:scale(1.06)}6%{opacity:1}33%{opacity:1}39%{opacity:0}100%{opacity:0;transform:scale(1)}}
+.hero-bg i:nth-child(2){background-image:url(https://www.biwako-memorial.jp/wp-content/uploads/2023/08/storyslide3.jpg);animation-delay:7s}
+.hero-bg i:nth-child(3){background-image:url(https://www.biwako-memorial.jp/wp-content/uploads/2023/08/storyslide4.jpg);animation-delay:14s}
+@keyframes heroFade{0%{opacity:0;transform:scale(1.05)}6%{opacity:1}36%{opacity:1}43%{opacity:0}100%{opacity:0;transform:scale(1)}}
 .hero-bg::after{
   content:"";position:absolute;inset:0;
-  background:linear-gradient(100deg,rgba(58,48,38,.72) 0%,rgba(58,48,38,.5) 46%,rgba(58,48,38,.18) 100%);
+  background:linear-gradient(100deg,rgba(58,48,38,.74) 0%,rgba(58,48,38,.52) 46%,rgba(58,48,38,.18) 100%);
 }
-.hero-in{position:relative;z-index:2;padding:72px 0;color:#fff}
+.hero-in{position:relative;z-index:2;padding:76px 0;color:#fff}
 .hero-badge{
   display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.14);
   border:1px solid rgba(255,255,255,.4);padding:6px 16px;border-radius:100px;
-  font-size:12.5px;letter-spacing:.08em;margin-bottom:24px
+  font-size:.74em;letter-spacing:.08em;margin-bottom:26px
 }
 .hero-badge::before{content:"";width:6px;height:6px;border-radius:50%;background:#8FD08F;box-shadow:0 0 0 3px rgba(143,208,143,.3)}
 .hero h1{
   font-family:var(--mincho);font-weight:500;
-  font-size:clamp(28px,5.6vw,50px);line-height:1.5;letter-spacing:.04em;
-  text-shadow:0 2px 24px rgba(0,0,0,.35);margin-bottom:22px
+  font-size:clamp(29px,5.4vw,48px);line-height:1.6;letter-spacing:.05em;
+  text-shadow:0 2px 24px rgba(0,0,0,.35);margin-bottom:20px
 }
-.hero h1 em{font-style:normal;display:inline-block;border-bottom:2px solid rgba(255,255,255,.55);padding-bottom:2px}
-.hero-sub{font-size:clamp(14px,1.6vw,17px);line-height:2;max-width:600px;text-shadow:0 1px 12px rgba(0,0,0,.4)}
-.hero-price{
-  display:flex;flex-wrap:wrap;gap:10px;margin:30px 0 34px
-}
+.hero-sub{font-size:clamp(14px,1.6vw,17px);line-height:2.1;max-width:620px;text-shadow:0 1px 12px rgba(0,0,0,.4)}
+.hero-price{display:flex;flex-wrap:wrap;gap:10px;margin:30px 0 34px}
 .hero-price div{
   background:rgba(255,255,255,.94);color:var(--brown-dd);border-radius:4px;
   padding:12px 18px;text-align:center;min-width:132px
 }
-.hero-price span{display:block;font-size:11.5px;letter-spacing:.06em;color:var(--text-l)}
+.hero-price span{display:block;font-size:.68em;letter-spacing:.06em;color:var(--text-l)}
 .hero-price b{font-family:var(--mincho);font-size:26px;line-height:1.2;color:var(--brown-d)}
 .hero-price b i{font-style:normal;font-size:14px;font-family:var(--gothic)}
 .hero-cta{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
 .btn{
   display:inline-flex;align-items:center;justify-content:center;gap:10px;
-  padding:18px 34px;border-radius:4px;font-size:15.5px;letter-spacing:.06em;
+  padding:18px 34px;border-radius:4px;font-size:.92em;letter-spacing:.06em;
   transition:transform .2s,box-shadow .25s,background .25s;text-align:center
 }
 .btn:hover{transform:translateY(-2px)}
 .btn--tel{background:var(--accent);color:#fff;box-shadow:0 6px 24px rgba(184,84,75,.4);flex-direction:column;gap:2px;padding:14px 34px;line-height:1.3}
-.btn--tel small{font-size:11.5px;opacity:.9}
-.btn--tel b{font-family:var(--mincho);font-size:25px;letter-spacing:.03em}
+.btn--tel small{font-size:11.5px;opacity:.92}
+.btn--tel b{font-family:var(--mincho);font-size:26px;letter-spacing:.03em}
 .btn--tel:hover{background:#a34a42}
 .btn--main{background:var(--brown);color:#fff;box-shadow:0 6px 24px rgba(159,136,110,.35)}
 .btn--main:hover{background:var(--brown-d)}
@@ -323,18 +318,45 @@ a{color:inherit;text-decoration:none}
 /* ============ 2導線 ============ */
 .route{background:var(--white);border-bottom:1px solid var(--line)}
 .route-grid{display:grid;grid-template-columns:1fr 1fr;gap:0}
-.route-col{padding:44px 40px;position:relative}
+.route-col{padding:46px 40px;position:relative}
 .route-col:first-child{background:#FBF4F3;border-right:1px solid var(--line)}
 .route-tag{
-  display:inline-block;font-size:12px;letter-spacing:.1em;padding:4px 14px;border-radius:2px;
+  display:inline-block;font-size:.72em;letter-spacing:.1em;padding:4px 14px;border-radius:2px;
   margin-bottom:16px;font-weight:700
 }
 .route-col:first-child .route-tag{background:var(--accent);color:#fff}
 .route-col:last-child .route-tag{background:var(--beige);color:var(--brown-dd)}
-.route-col h3{font-family:var(--mincho);font-size:22px;font-weight:500;color:var(--brown-dd);margin-bottom:10px;line-height:1.5}
-.route-col p{font-size:14px;color:var(--text-l);margin-bottom:22px;line-height:1.9}
+.route-col h3{font-family:var(--mincho);font-size:1.3em;font-weight:500;color:var(--brown-dd);margin-bottom:10px;line-height:1.5}
+.route-col p{font-size:.85em;color:var(--text-l);margin-bottom:22px;line-height:1.95}
 .route-btns{display:flex;flex-wrap:wrap;gap:12px}
-.route-btns .btn{padding:15px 26px;font-size:14.5px}
+.route-btns .btn{padding:15px 26px;font-size:.86em}
+
+/* ============ もしもの時ガイド ============ */
+.moshimo{background:var(--white)}
+.moshimo-note{
+  max-width:780px;margin:0 auto 44px;background:#FBF4F3;border-left:4px solid var(--accent);
+  padding:24px 28px;font-size:.9em;line-height:2.1;border-radius:0 4px 4px 0
+}
+.moshimo-note b{color:var(--accent)}
+.mstep-wrap{max-width:840px;margin-inline:auto}
+.mstep{
+  display:flex;gap:26px;padding:30px 0;border-bottom:1px solid var(--line);align-items:flex-start
+}
+.mstep:last-child{border-bottom:0}
+.mstep-no{
+  flex:0 0 58px;height:58px;border-radius:50%;background:var(--paper);border:1px solid var(--beige);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--mincho);font-size:24px;color:var(--brown-d)
+}
+.mstep h3{font-family:var(--mincho);font-size:1.18em;font-weight:500;color:var(--brown-dd);margin-bottom:8px;line-height:1.6}
+.mstep p{font-size:.88em;color:var(--text-l);line-height:2}
+.mstep p b{color:var(--brown-dd)}
+.mstep .btn{margin-top:14px}
+.moshimo-keep{
+  margin-top:40px;text-align:center;background:var(--beige-l);border-radius:5px;padding:30px 24px
+}
+.moshimo-keep p{font-size:.88em;color:var(--brown-dd);margin-bottom:6px}
+.moshimo-keep b{font-family:var(--mincho);font-size:1.5em;color:var(--brown-d);letter-spacing:.04em}
 
 /* ============ 選ばれる理由 ============ */
 .reasons{background:var(--paper)}
@@ -349,17 +371,30 @@ a{color:inherit;text-decoration:none}
   position:absolute;top:18px;right:22px;opacity:.6
 }
 .reason-ic{width:44px;height:44px;margin-bottom:18px;color:var(--brown)}
-.reason h3{font-family:var(--mincho);font-size:19px;font-weight:500;color:var(--brown-dd);line-height:1.6;margin-bottom:12px}
-.reason p{font-size:14px;color:var(--text-l);line-height:1.95}
+.reason h3{font-family:var(--mincho);font-size:1.1em;font-weight:500;color:var(--brown-dd);line-height:1.6;margin-bottom:12px}
+.reason p{font-size:.83em;color:var(--text-l);line-height:1.95}
 
 /* ============ 料金プラン ============ */
 .plans{background:linear-gradient(180deg,var(--beige-l) 0%,var(--paper) 100%)}
 .plan-note{
   display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;
   background:#fff;border:1px solid var(--brown);border-radius:4px;
-  padding:16px 24px;margin-bottom:40px;text-align:center;font-size:14.5px;color:var(--brown-dd)
+  padding:16px 24px;margin-bottom:40px;text-align:center;font-size:.88em;color:var(--brown-dd)
 }
-.plan-note b{font-family:var(--mincho);font-size:19px;color:var(--accent)}
+.plan-note b{font-family:var(--mincho);font-size:1.28em;color:var(--accent)}
+
+/* 比較表 */
+.cmp-wrap{overflow-x:auto;margin-bottom:48px;-webkit-overflow-scrolling:touch}
+.cmp{width:100%;min-width:640px;border-collapse:collapse;background:#fff;border:1px solid var(--line);font-size:.85em}
+.cmp th,.cmp td{padding:15px 14px;border:1px solid var(--line);text-align:center;line-height:1.7}
+.cmp thead th{background:var(--brown-dd);color:#fff;font-family:var(--mincho);font-weight:500;font-size:1.05em;letter-spacing:.04em}
+.cmp thead th:first-child{background:var(--brown-d)}
+.cmp tbody th{background:var(--beige-l);color:var(--brown-dd);font-weight:600;white-space:nowrap;text-align:center}
+.cmp td b{font-family:var(--mincho);font-size:1.35em;color:var(--brown-d)}
+.cmp .ok{color:var(--brown);font-size:1.1em}
+.cmp .no{color:#C9BFB4}
+.cmp td small{display:block;color:var(--text-l);font-size:.82em;line-height:1.6}
+
 .plan-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
 .plan{
   background:#fff;border:1px solid var(--line);border-radius:5px;overflow:hidden;
@@ -367,28 +402,24 @@ a{color:inherit;text-decoration:none}
 }
 .plan:hover{transform:translateY(-4px);box-shadow:var(--shadow-l)}
 .plan--pop{border:2px solid var(--brown);box-shadow:var(--shadow)}
-.plan-ribbon{
-  background:var(--brown);color:#fff;text-align:center;font-size:12.5px;
-  letter-spacing:.14em;padding:7px
-}
+.plan-ribbon{background:var(--brown);color:#fff;text-align:center;font-size:.76em;letter-spacing:.14em;padding:7px}
 .plan-ph{aspect-ratio:16/10;overflow:hidden;background:var(--beige-l)}
 .plan-ph img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
 .plan:hover .plan-ph img{transform:scale(1.05)}
 .plan-body{padding:26px 24px 28px;display:flex;flex-direction:column;flex:1}
-.plan h3{font-family:var(--mincho);font-size:22px;font-weight:500;color:var(--brown-dd);margin-bottom:6px}
-.plan-for{font-size:12.5px;color:var(--brown);letter-spacing:.04em;margin-bottom:16px}
+.plan h3{font-family:var(--mincho);font-size:1.3em;font-weight:500;color:var(--brown-dd);margin-bottom:6px}
+.plan-for{font-size:.76em;color:var(--brown);letter-spacing:.04em;margin-bottom:16px}
 .plan-price{display:flex;align-items:baseline;gap:4px;padding-bottom:16px;border-bottom:1px dashed var(--line);margin-bottom:16px}
-.plan-price em{font-style:normal;font-size:13px;color:var(--text-l)}
+.plan-price em{font-style:normal;font-size:.78em;color:var(--text-l)}
 .plan-price b{font-family:var(--mincho);font-size:42px;line-height:1;color:var(--brown-d)}
-.plan-price i{font-style:normal;font-size:15px;color:var(--brown-d)}
-.plan-price s{font-size:12px;color:var(--text-l);text-decoration:none;margin-left:auto}
+.plan-price i{font-style:normal;font-size:.9em;color:var(--brown-d)}
 .plan ul{list-style:none;margin-bottom:22px}
-.plan li{font-size:13.5px;color:var(--text-l);padding-left:22px;position:relative;line-height:1.9}
+.plan li{font-size:.8em;color:var(--text-l);padding-left:22px;position:relative;line-height:1.9}
 .plan li::before{
   content:"";position:absolute;left:2px;top:12px;width:11px;height:6px;
   border-left:1.6px solid var(--brown);border-bottom:1.6px solid var(--brown);transform:rotate(-45deg)
 }
-.plan .btn{margin-top:auto;width:100%;padding:14px;font-size:14.5px}
+.plan .btn{margin-top:auto;width:100%;padding:14px;font-size:.86em}
 .plan-more{text-align:center;margin-top:36px}
 
 /* ============ 追加料金なし ============ */
@@ -397,9 +428,49 @@ a{color:inherit;text-decoration:none}
 .included .sec-en{color:var(--beige)}
 .included .sec-lead{color:rgba(255,255,255,.75)}
 .inc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.16)}
-.inc-grid div{background:var(--brown-dd);padding:22px 14px;text-align:center;font-size:13.5px;letter-spacing:.02em}
+.inc-grid div{background:var(--brown-dd);padding:22px 14px;text-align:center;font-size:.8em;letter-spacing:.02em}
 .inc-grid div span{display:block;font-family:var(--mincho);font-size:22px;color:var(--beige);margin-bottom:6px}
-.inc-foot{text-align:center;margin-top:32px;font-size:14px;color:rgba(255,255,255,.8);line-height:2}
+.inc-foot{text-align:center;margin-top:32px;font-size:.83em;color:rgba(255,255,255,.8);line-height:2}
+
+/* ============ 費用シミュレーション ============ */
+.sim{background:var(--white)}
+.sim-box{
+  max-width:860px;margin-inline:auto;background:var(--paper);border:1px solid var(--line);
+  border-radius:6px;padding:44px 40px;box-shadow:var(--shadow)
+}
+.sim-q{margin-bottom:30px}
+.sim-q>span{
+  display:block;font-family:var(--mincho);font-size:1.05em;color:var(--brown-dd);
+  margin-bottom:14px;padding-left:14px;border-left:3px solid var(--brown)
+}
+.sim-opts{display:flex;flex-wrap:wrap;gap:10px}
+.sim-opts label{
+  flex:1;min-width:150px;background:#fff;border:1.5px solid var(--line);border-radius:4px;
+  padding:14px 16px;text-align:center;cursor:pointer;font-size:.88em;line-height:1.5;
+  transition:border-color .2s,background .2s;user-select:none
+}
+.sim-opts label small{display:block;font-size:.78em;color:var(--text-l)}
+.sim-opts input{position:absolute;opacity:0;pointer-events:none}
+.sim-opts label:has(input:checked){border-color:var(--brown);background:var(--beige-l);color:var(--brown-dd);font-weight:600}
+.sim-range{display:flex;align-items:center;gap:18px}
+.sim-range input[type=range]{flex:1;accent-color:var(--brown);height:32px}
+.sim-range output{
+  flex:0 0 96px;text-align:center;background:#fff;border:1px solid var(--line);border-radius:4px;
+  padding:9px 0;font-family:var(--mincho);font-size:1.15em;color:var(--brown-d)
+}
+.sim-result{
+  margin-top:36px;background:#fff;border:2px solid var(--brown);border-radius:6px;padding:30px 32px
+}
+.sim-result h3{font-family:var(--mincho);font-size:1.05em;font-weight:500;color:var(--brown-dd);margin-bottom:16px}
+.sim-rows{list-style:none;border-top:1px solid var(--line);margin-bottom:18px}
+.sim-rows li{display:flex;justify-content:space-between;gap:16px;padding:11px 2px;border-bottom:1px solid var(--line);font-size:.86em;color:var(--text-l)}
+.sim-rows li b{color:var(--brown-dd);font-weight:600}
+.sim-total{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.sim-total span{font-size:.9em;color:var(--brown-dd)}
+.sim-total b{font-family:var(--mincho);font-size:clamp(28px,4.5vw,38px);color:var(--accent);letter-spacing:.02em}
+.sim-note{margin-top:16px;font-size:.76em;color:var(--text-l);line-height:1.9}
+.sim-cta{text-align:center;margin-top:32px}
+.sim-cta p{font-size:.88em;color:var(--text-l);margin-bottom:16px}
 
 /* ============ 流れ ============ */
 .flow-wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
@@ -409,26 +480,47 @@ a{color:inherit;text-decoration:none}
   width:38px;height:38px;border-radius:50%;background:var(--brown);color:#fff;
   font-family:var(--mincho);font-size:17px;margin-bottom:16px
 }
-.step h3{font-family:var(--mincho);font-size:18px;font-weight:500;color:var(--brown-dd);margin-bottom:10px}
-.step p{font-size:13.5px;color:var(--text-l);line-height:1.95}
+.step h3{font-family:var(--mincho);font-size:1.05em;font-weight:500;color:var(--brown-dd);margin-bottom:10px}
+.step p{font-size:.8em;color:var(--text-l);line-height:1.95}
 .step-time{
-  position:absolute;top:26px;right:24px;font-size:11.5px;color:var(--brown);
+  position:absolute;top:26px;right:24px;font-size:.68em;color:var(--brown);
   border:1px solid var(--beige);border-radius:2px;padding:2px 9px
 }
 
+/* ============ 事前相談 ============ */
+.jizen{background:var(--beige-l)}
+.jizen-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.jizen-copy h2{font-family:var(--mincho);font-size:clamp(24px,3.6vw,33px);font-weight:500;line-height:1.7;color:var(--brown-dd);margin-bottom:22px}
+.jizen-copy p{font-size:.9em;color:var(--text-l);line-height:2.1;margin-bottom:16px}
+.jizen-merits{list-style:none;margin:26px 0 32px}
+.jizen-merits li{
+  background:#fff;border:1px solid var(--line);border-radius:4px;
+  padding:18px 22px;margin-bottom:12px;display:flex;gap:16px;align-items:flex-start;font-size:.88em;line-height:1.9
+}
+.jizen-merits li::before{
+  content:"";flex:0 0 22px;height:22px;margin-top:6px;border-radius:50%;
+  background:var(--brown);
+  -webkit-mask:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="M5 13l5 5L20 7"/></svg>') center/14px no-repeat;
+  mask:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="M5 13l5 5L20 7"/></svg>') center/14px no-repeat;
+  background-color:var(--brown)
+}
+.jizen-merits b{color:var(--brown-dd)}
+.jizen-ph{border-radius:6px;overflow:hidden;box-shadow:var(--shadow-l)}
+.jizen-ph img{width:100%;height:100%;object-fit:cover;aspect-ratio:4/3}
+
 /* ============ 声 ============ */
-.voices{background:var(--beige-l)}
+.voices{background:var(--paper)}
 .voice-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
 .voice{background:#fff;border-radius:4px;padding:32px 30px;box-shadow:var(--shadow);position:relative}
 .voice::before{
   content:"“";position:absolute;top:6px;right:24px;font-family:var(--mincho);
   font-size:80px;color:var(--beige);opacity:.5;line-height:1
 }
-.voice-stars{color:#D9A441;letter-spacing:.18em;font-size:14px;margin-bottom:8px}
-.voice-plan{display:inline-block;font-size:11.5px;background:var(--beige-l);color:var(--brown-d);padding:3px 12px;border-radius:2px;margin-bottom:14px}
-.voice h3{font-family:var(--mincho);font-size:18px;font-weight:500;color:var(--brown-dd);line-height:1.6;margin-bottom:12px;position:relative;z-index:1}
-.voice p{font-size:14px;color:var(--text-l);line-height:2;position:relative;z-index:1}
-.voice-who{margin-top:16px;font-size:12.5px;color:var(--brown);letter-spacing:.04em}
+.voice-stars{color:#D9A441;letter-spacing:.18em;font-size:.85em;margin-bottom:8px}
+.voice-plan{display:inline-block;font-size:.7em;background:var(--beige-l);color:var(--brown-d);padding:3px 12px;border-radius:2px;margin-bottom:14px}
+.voice h3{font-family:var(--mincho);font-size:1.05em;font-weight:500;color:var(--brown-dd);line-height:1.6;margin-bottom:12px;position:relative;z-index:1}
+.voice p{font-size:.83em;color:var(--text-l);line-height:2;position:relative;z-index:1}
+.voice-who{margin-top:16px;font-size:.74em;color:var(--brown);letter-spacing:.04em}
 
 /* ============ ギャラリー ============ */
 .gal{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
@@ -438,12 +530,34 @@ a{color:inherit;text-decoration:none}
 .gal a::after{content:"";position:absolute;inset:0;background:rgba(159,136,110,0);transition:background .3s}
 .gal a:hover::after{background:rgba(159,136,110,.18)}
 
+/* ============ 基礎知識 ============ */
+.guide{background:var(--white)}
+.guide-list{max-width:860px;margin-inline:auto}
+.guide-list details{background:var(--paper);border:1px solid var(--line);border-radius:4px;margin-bottom:14px;overflow:hidden}
+.guide-list summary{
+  list-style:none;cursor:pointer;padding:22px 58px 22px 24px;position:relative;
+  font-family:var(--mincho);font-size:1.02em;color:var(--brown-dd);line-height:1.7;font-weight:500
+}
+.guide-list summary::-webkit-details-marker{display:none}
+.guide-list summary::after{
+  content:"";position:absolute;right:26px;top:30px;width:9px;height:9px;
+  border-right:1.6px solid var(--brown);border-bottom:1.6px solid var(--brown);
+  transform:rotate(45deg);transition:transform .3s
+}
+.guide-list details[open] summary::after{transform:rotate(-135deg);top:34px}
+.guide-body{padding:0 26px 26px;font-size:.86em;color:var(--text-l);line-height:2.05}
+.guide-body p{margin-bottom:12px}
+.guide-body b{color:var(--brown-dd)}
+.guide-body .pt{
+  background:#fff;border-left:3px solid var(--brown);padding:14px 18px;border-radius:0 3px 3px 0;margin-top:14px
+}
+
 /* ============ FAQ ============ */
 .faq{max-width:840px;margin-inline:auto}
 .faq details{background:#fff;border:1px solid var(--line);border-radius:4px;margin-bottom:12px;overflow:hidden}
 .faq summary{
   list-style:none;cursor:pointer;padding:20px 56px 20px 58px;position:relative;
-  font-size:15.5px;color:var(--brown-dd);line-height:1.7;font-weight:500
+  font-size:.92em;color:var(--brown-dd);line-height:1.7;font-weight:500
 }
 .faq summary::-webkit-details-marker{display:none}
 .faq summary::before{
@@ -456,7 +570,7 @@ a{color:inherit;text-decoration:none}
   transform:rotate(45deg);transition:transform .3s
 }
 .faq details[open] summary::after{transform:rotate(-135deg);top:31px}
-.faq-a{padding:0 26px 24px 58px;font-size:14.5px;color:var(--text-l);line-height:2;position:relative}
+.faq-a{padding:0 26px 24px 58px;font-size:.86em;color:var(--text-l);line-height:2;position:relative}
 .faq-a::before{content:"A";position:absolute;left:24px;top:-1px;font-family:var(--mincho);font-size:18px;color:var(--beige)}
 
 /* ============ アクセス ============ */
@@ -464,14 +578,14 @@ a{color:inherit;text-decoration:none}
 .access-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:48px;align-items:start}
 .access-map{border-radius:4px;overflow:hidden;border:1px solid var(--line);aspect-ratio:4/3}
 .access-map iframe{width:100%;height:100%;border:0;display:block}
-.access h3{font-family:var(--mincho);font-size:24px;font-weight:500;color:var(--brown-dd);margin-bottom:8px}
-.access-addr{font-size:15px;color:var(--text-l);margin-bottom:24px}
+.access h3{font-family:var(--mincho);font-size:1.4em;font-weight:500;color:var(--brown-dd);margin-bottom:8px}
+.access-addr{font-size:.9em;color:var(--text-l);margin-bottom:24px}
 .access-list{list-style:none;border-top:1px solid var(--line)}
-.access-list li{display:flex;gap:16px;padding:14px 0;border-bottom:1px solid var(--line);font-size:14px}
-.access-list b{flex:0 0 132px;color:var(--brown-d);font-weight:500;font-family:var(--mincho);font-size:15px}
+.access-list li{display:flex;gap:16px;padding:14px 0;border-bottom:1px solid var(--line);font-size:.84em}
+.access-list b{flex:0 0 132px;color:var(--brown-d);font-weight:500;font-family:var(--mincho);font-size:1.05em}
 .access-list span{color:var(--text-l)}
 .pay{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
-.pay span{font-size:12px;border:1px solid var(--line);border-radius:2px;padding:4px 12px;color:var(--text-l)}
+.pay span{font-size:.72em;border:1px solid var(--line);border-radius:2px;padding:4px 12px;color:var(--text-l)}
 
 /* ============ 最終CTA ============ */
 .cta{
@@ -481,20 +595,20 @@ a{color:inherit;text-decoration:none}
 .cta::before{content:"";position:absolute;inset:0;background:linear-gradient(rgba(58,48,38,.86),rgba(58,48,38,.78))}
 .cta-in{position:relative;z-index:1}
 .cta h2{font-family:var(--mincho);font-size:clamp(23px,4vw,36px);font-weight:500;line-height:1.6;margin-bottom:18px}
-.cta p{font-size:15px;line-height:2;color:rgba(255,255,255,.85);margin-bottom:36px}
+.cta p{font-size:.9em;line-height:2;color:rgba(255,255,255,.85);margin-bottom:36px}
 .cta-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
-.cta-note{margin-top:28px;font-size:13px;color:rgba(255,255,255,.7)}
+.cta-note{margin-top:28px;font-size:.78em;color:rgba(255,255,255,.7)}
 
 /* ============ フッター ============ */
 .ft{background:#fff;padding:64px 0 0;border-top:1px solid var(--line)}
 .ft-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:40px;padding-bottom:48px}
 .ft-logo b{font-family:var(--mincho);font-size:22px;color:var(--brown-dd);display:block;letter-spacing:.06em}
 .ft-logo span{font-size:12px;color:var(--text-l);letter-spacing:.06em}
-.ft-info{margin-top:18px;font-size:13.5px;color:var(--text-l);line-height:2.1}
+.ft-info{margin-top:18px;font-size:.8em;color:var(--text-l);line-height:2.1}
 .ft-info a{color:var(--brown-d)}
-.ft h4{font-family:var(--mincho);font-size:15px;color:var(--brown-dd);margin-bottom:14px;font-weight:500;letter-spacing:.06em}
+.ft h4{font-family:var(--mincho);font-size:.9em;color:var(--brown-dd);margin-bottom:14px;font-weight:500;letter-spacing:.06em}
 .ft ul{list-style:none}
-.ft li a{font-size:13.5px;color:var(--text-l);line-height:2.2;transition:color .2s}
+.ft li a{font-size:.8em;color:var(--text-l);line-height:2.2;transition:color .2s}
 .ft li a:hover{color:var(--brown)}
 .ft-sns{display:flex;gap:10px;margin-top:18px}
 .ft-sns a{
@@ -503,7 +617,7 @@ a{color:inherit;text-decoration:none}
 }
 .ft-sns a:hover{background:var(--brown);color:#fff;border-color:var(--brown)}
 .ft-sns svg{width:16px;height:16px}
-.copy{background:var(--brown);color:#fff;text-align:center;padding:16px;font-size:12px;letter-spacing:.04em}
+.copy{background:var(--brown);color:#fff;text-align:center;padding:16px;font-size:.72em;letter-spacing:.04em}
 
 /* ============ モバイル固定CTA ============ */
 .mob-cta{
@@ -526,26 +640,30 @@ a{color:inherit;text-decoration:none}
 .rv.in{opacity:1;transform:none}
 
 /* ============ レスポンシブ ============ */
-@media(max-width:1080px){
+@media(max-width:1360px){
   .gnav{display:none}
   .hd-tel{display:none}
+  .burger{display:block}
 }
 @media(max-width:900px){
   .reason-grid,.plan-grid,.flow-wrap{grid-template-columns:1fr 1fr}
   .inc-grid{grid-template-columns:repeat(2,1fr)}
-  .access-grid{grid-template-columns:1fr;gap:32px}
+  .access-grid,.jizen-grid{grid-template-columns:1fr;gap:32px}
   .ft-grid{grid-template-columns:1fr 1fr;gap:32px}
   .gal{grid-template-columns:repeat(3,1fr)}
+  .jizen-ph{order:-1}
 }
 @media(max-width:768px){
   html{scroll-padding-top:64px}
-  body{font-size:15px;padding-bottom:62px}
+  body{font-size:calc(var(--fs) - 1px);padding-bottom:62px}
   .inner{width:calc(100% - 36px)}
   .sec{padding:60px 0}
-  .hd-in{height:60px}
+  .hd-in{height:60px;gap:10px}
   .hd-cta{display:none}
   .burger{display:block}
-  .logo,.burger{position:relative;z-index:2}
+  .logo,.burger,.fs-toggle{position:relative;z-index:2}
+  .fs-toggle{margin-left:auto}
+  .burger{margin-left:0}
   .gnav{
     display:block;position:fixed;inset:0;background:#fff;
     padding:110px 24px 100px;overflow-y:auto;margin:0;
@@ -556,7 +674,7 @@ a{color:inherit;text-decoration:none}
   .gnav a{display:block;padding:16px 0;border-bottom:1px solid var(--line);font-size:15px}
   .hero{min-height:auto}
   .hero-in{padding:56px 0 60px}
-  .hero h1{font-size:26px;letter-spacing:.01em}
+  .hero h1{font-size:27px;letter-spacing:.01em}
   .hero-price div{flex:1;min-width:104px;padding:10px 8px}
   .hero-price b{font-size:22px}
   .hero-cta{flex-direction:column;align-items:stretch}
@@ -564,14 +682,18 @@ a{color:inherit;text-decoration:none}
   .route-grid{grid-template-columns:1fr}
   .route-col{padding:32px 24px}
   .route-col:first-child{border-right:0;border-bottom:1px solid var(--line)}
+  .mstep{gap:16px;padding:24px 0}
+  .mstep-no{flex:0 0 46px;height:46px;font-size:20px}
   .reason-grid,.plan-grid,.flow-wrap,.voice-grid{grid-template-columns:1fr}
+  .sim-box{padding:30px 22px}
+  .sim-result{padding:24px 20px}
   .gal{grid-template-columns:repeat(2,1fr);gap:8px}
   .ft-grid{grid-template-columns:1fr;gap:28px}
   .mob-cta{display:grid}
   .cta{background-attachment:scroll;padding:64px 0}
-  .faq summary{padding:18px 46px 18px 50px;font-size:14.5px}
+  .faq summary{padding:18px 46px 18px 50px}
   .faq-a{padding:0 20px 20px 50px}
-  .access-list b{flex:0 0 96px;font-size:14px}
+  .access-list b{flex:0 0 96px}
 }
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}
@@ -596,13 +718,18 @@ a{color:inherit;text-decoration:none}
       <span>びわこメモリアルホール</span>
     </a>
     <nav class="gnav" id="gnav">
-      <a href="#reasons">選ばれる理由</a>
+      <a href="#moshimo">もしもの時は</a>
       <a href="#plans">料金プラン</a>
+      <a href="#sim">費用の目安</a>
       <a href="#flow">ご葬儀の流れ</a>
-      <a href="#voices">お客様の声</a>
+      <a href="#jizen">事前のご相談</a>
       <a href="#faq">よくある質問</a>
       <a href="#access">アクセス</a>
     </nav>
+    <div class="fs-toggle" role="group" aria-label="文字サイズ">
+      <button type="button" id="fsStd" class="on" aria-pressed="true">標準</button>
+      <button type="button" id="fsLg" aria-pressed="false">大きく</button>
+    </div>
     <div class="hd-tel">
       <small>365日24時間・通話無料</small>
       <b><a href="tel:0120440075">0120-440-075</a></b>
@@ -619,9 +746,10 @@ a{color:inherit;text-decoration:none}
   <div class="hero-bg"><i></i><i></i><i></i></div>
   <div class="inner hero-in">
     <span class="hero-badge">ただいま受付中／365日24時間対応</span>
-    <h1>大切な人と、<br><em>最後の時間</em>を家族で囲む。</h1>
+    <h1>「ありがとう」を、<br>いちばん近い場所から。</h1>
     <p class="hero-sub">
-      滋賀県 栗東市の家族葬会館 びわこメモリアルホール。<br>
+      湖南地域で20年以上、家族葬ひとすじ。<br>
+      滋賀県栗東市の家族葬会館 びわこメモリアルホール。<br>
       栗東IC・済生会滋賀県病院から車で約5分。栗東・草津・守山・野洲・湖南・甲賀の皆さまへ。
     </p>
 
@@ -637,7 +765,7 @@ a{color:inherit;text-decoration:none}
         <small>お急ぎの方はこちら（通話無料）</small>
         <b>0120-440-075</b>
       </a>
-      <a class="btn btn--main" href="#plans">料金プランを見る</a>
+      <a class="btn btn--main" href="#sim">費用の目安を見てみる</a>
       <a class="btn btn--ghost" href="#contact">無料で資料を取り寄せる</a>
     </div>
   </div>
@@ -653,18 +781,73 @@ a{color:inherit;text-decoration:none}
         <p>まずはお電話ください。ご搬送・安置の手配をすぐに行います。<br>その場でご契約いただく必要はありません。深夜・早朝も専門スタッフが対応します。</p>
         <div class="route-btns">
           <a class="btn btn--tel" href="tel:0120440075"><small>24時間・通話無料</small><b>0120-440-075</b></a>
-          <a class="btn btn--line" href="#flow">まず流れを確認する</a>
+          <a class="btn btn--line" href="#moshimo">まず何をすればいいか見る</a>
         </div>
       </div>
       <div class="route-col">
         <span class="route-tag">お考え中の方へ</span>
-        <h3>そろそろ準備を、と考え始めた方</h3>
-        <p>事前にご相談いただくと、平均で費用を抑えたご提案ができます。<br>無料の資料請求・会員登録で、プラン内容と総額の目安をご確認いただけます。</p>
+        <h3>親のこと、そろそろ考えておきたい方</h3>
+        <p>ご相談の多くは、親御さまがお元気なうちのお子さま世代からです。<br>事前のご相談・資料請求は無料。費用の目安もこのページでご確認いただけます。</p>
         <div class="route-btns">
-          <a class="btn btn--main" href="#contact">無料資料請求（1分）</a>
-          <a class="btn btn--line" href="#contact">会館を見学する</a>
+          <a class="btn btn--main" href="#jizen">事前相談について知る</a>
+          <a class="btn btn--line" href="#sim">費用の目安を見る</a>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== もしもの時ガイド ========== -->
+<section class="sec moshimo" id="moshimo">
+  <div class="inner">
+    <div class="sec-head rv">
+      <span class="sec-en">First Steps</span>
+      <h2 class="sec-title">もしもの時、まず何をすればいいか</h2>
+      <p class="sec-lead">病院で、ご自宅で、その時が来たら。<br>順番にたどれば大丈夫です。このページを、ご家族に共有しておいてください。</p>
+    </div>
+
+    <div class="moshimo-note rv">
+      はじめにお伝えしたいこと ——
+      病院から「葬儀社を決めてください」と言われても、<b>その場で急いで決める必要はありません</b>。
+      病院から紹介された葬儀社に頼む義務もありません。搬送だけを依頼して、
+      葬儀社はご安置のあとに落ち着いて選ぶことができます。
+    </div>
+
+    <div class="mstep-wrap">
+      <div class="mstep rv">
+        <div class="mstep-no">1</div>
+        <div>
+          <h3>まず、深呼吸をしてください</h3>
+          <p>ご逝去後、医師から死亡診断書を受け取ります。ここから数時間のあいだに決めなければいけないのは「どこに搬送するか」だけです。<b>葬儀の内容や費用は、あとからゆっくり決められます。</b></p>
+        </div>
+      </div>
+      <div class="mstep rv">
+        <div class="mstep-no">2</div>
+        <div>
+          <h3>お電話ください（この時点で契約は不要です）</h3>
+          <p>0120-440-075へ。お名前と、いまいらっしゃる場所だけお聞かせください。深夜・早朝でも専門スタッフが対応します。</p>
+          <a class="btn btn--tel" href="tel:0120440075"><small>365日24時間・通話無料</small><b>0120-440-075</b></a>
+        </div>
+      </div>
+      <div class="mstep rv">
+        <div class="mstep-no">3</div>
+        <div>
+          <h3>お迎え・ご搬送（目安60分）</h3>
+          <p>寝台車で病院・ご自宅へお迎えにあがり、会館の安置室またはご自宅へご安置します。ドライアイスの手配もこちらで行います。<b>死亡診断書だけお手元にご用意ください。</b></p>
+        </div>
+      </div>
+      <div class="mstep rv">
+        <div class="mstep-no">4</div>
+        <div>
+          <h3>落ち着いてから、ご相談</h3>
+          <p>ご希望とご予算を伺い、総額のお見積りを書面でお出しします。ご納得いただいてからのご契約です。他社との見比べも、どうぞご遠慮なく。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="moshimo-keep rv">
+      <p>もしもの時のために、この番号を控えておいてください</p>
+      <b>びわこメモリアルホール　0120-440-075</b>
     </div>
   </div>
 </section>
@@ -732,12 +915,58 @@ a{color:inherit;text-decoration:none}
   <div class="inner">
     <div class="sec-head rv">
       <span class="sec-en">Plan &amp; Price</span>
-      <h2 class="sec-title">ご希望に合わせて選べる、5つの定額プラン</h2>
-      <p class="sec-lead">どのプランも、必要なものはすべて込み。当日の追加費用はいただきません。</p>
+      <h2 class="sec-title">どのお見送りが、うちに合っているのか</h2>
+      <p class="sec-lead">まずは3つの形の違いから。どのプランも必要なものはすべて込み、当日の追加費用はいただきません。</p>
     </div>
 
     <div class="plan-note rv" data-check="price">
       表示価格はすべて<b>追加料金なし</b>の定額セット価格です（税込・火葬料別）
+    </div>
+
+    <!-- 比較表 -->
+    <div class="cmp-wrap rv">
+      <table class="cmp" data-check="price">
+        <thead>
+          <tr>
+            <th>　</th>
+            <th>火葬式</th>
+            <th>一日葬</th>
+            <th>家族葬（二日葬）</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>お通夜</th>
+            <td><span class="no">―</span></td>
+            <td><span class="no">―</span></td>
+            <td><span class="ok">あり</span></td>
+          </tr>
+          <tr>
+            <th>告別式</th>
+            <td><span class="no">―</span></td>
+            <td><span class="ok">あり</span></td>
+            <td><span class="ok">あり</span></td>
+          </tr>
+          <tr>
+            <th>日数の目安</th>
+            <td>半日</td>
+            <td>1日</td>
+            <td>2日</td>
+          </tr>
+          <tr>
+            <th>向いているご家族</th>
+            <td><small>ごく近しい方だけで<br>静かに見送りたい</small></td>
+            <td><small>高齢のご親族の負担を<br>軽くしたい・遠方が多い</small></td>
+            <td><small>お通夜から告別式まで<br>しっかりお別れしたい</small></td>
+          </tr>
+          <tr>
+            <th>プラン価格</th>
+            <td><b>15</b>万円</td>
+            <td><b>25</b>万円〜</td>
+            <td><b>38</b>万円〜</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
     <div class="plan-grid">
@@ -825,8 +1054,72 @@ a{color:inherit;text-decoration:none}
   </div>
 </section>
 
+<!-- ========== 費用シミュレーション ========== -->
+<section class="sec sim" id="sim">
+  <div class="inner">
+    <div class="sec-head rv">
+      <span class="sec-en">Simulation</span>
+      <h2 class="sec-title">結局、総額でいくらかかるのか</h2>
+      <p class="sec-lead">
+        葬儀費用でいちばん不安なのは「最終的にいくら払うのか」だと思います。<br>
+        3つ選ぶだけで、プラン定額＋変動費まで含めた総額の目安をその場でご確認いただけます。
+      </p>
+    </div>
+
+    <div class="sim-box rv">
+      <div class="sim-q">
+        <span>1. お見送りの形は？</span>
+        <div class="sim-opts" id="simPlan">
+          <label><input type="radio" name="simplan" value="kaso">火葬式<small>15万円</small></label>
+          <label><input type="radio" name="simplan" value="ichi" checked>一日葬<small>25万円〜</small></label>
+          <label><input type="radio" name="simplan" value="kazoku">家族葬<small>38万円〜</small></label>
+        </div>
+      </div>
+
+      <div class="sim-q">
+        <span>2. お呼びする人数は？（ご家族・ご親族）</span>
+        <div class="sim-range">
+          <input type="range" id="simNum" min="2" max="40" step="1" value="10" aria-label="人数">
+          <output id="simNumOut">10名</output>
+        </div>
+      </div>
+
+      <div class="sim-q">
+        <span>3. お坊さん（ご宗教者）は？</span>
+        <div class="sim-opts" id="simRel">
+          <label><input type="radio" name="simrel" value="yes" checked>お願いする<small>菩提寺 or ご紹介</small></label>
+          <label><input type="radio" name="simrel" value="no">お願いしない<small>無宗教で見送る</small></label>
+        </div>
+      </div>
+
+      <div class="sim-result" data-check="price">
+        <h3>総額の目安</h3>
+        <ul class="sim-rows">
+          <li><span id="simRowPlan">一日葬プラン（定額・追加料金なし）</span><b id="simValPlan">25万円〜</b></li>
+          <li><span>火葬場使用料（目安）</span><b id="simValKaso">1〜3万円</b></li>
+          <li><span id="simRowRel">お布施（ご紹介の場合の目安）</span><b id="simValRel">10〜20万円</b></li>
+          <li><span>お食事・返礼品（人数分の目安）</span><b id="simValMeal">5〜8万円</b></li>
+        </ul>
+        <div class="sim-total">
+          <span>総額の目安</span>
+          <b id="simTotal">41〜56万円</b>
+        </div>
+        <p class="sim-note">
+          ※ あくまで目安です。お布施は菩提寺様との関係、火葬場使用料はお住まいの市町により変わります。<br>
+          ※ 正確な金額は、無料のお見積りで書面にしてお渡しします。この目安より高い金額を当日請求することはありません。
+        </p>
+      </div>
+
+      <div class="sim-cta">
+        <p>この内容をもとに、正式なお見積り（無料）をお作りします。</p>
+        <a class="btn btn--main" href="#contact">無料でお見積りを依頼する</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ========== 流れ ========== -->
-<section class="sec" id="flow">
+<section class="sec" id="flow" style="background:var(--paper)">
   <div class="inner">
     <div class="sec-head rv">
       <span class="sec-en">Flow</span>
@@ -869,6 +1162,38 @@ a{color:inherit;text-decoration:none}
         <span class="step-no">6</span>
         <h3>アフターサポート</h3>
         <p>各種手続き、法要のご相談、相続や司法書士のご紹介まで。葬儀が終わったあとも、窓口はそのままです。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 事前相談 ========== -->
+<section class="sec jizen" id="jizen">
+  <div class="inner">
+    <div class="jizen-grid">
+      <div class="jizen-copy rv">
+        <span class="sec-en">Pre-consultation</span>
+        <h2>親が元気なうちに相談するのは、<br>親不孝ではありません。</h2>
+        <p>
+          「まだ早いのでは」「縁起でもない」——そう感じられるお気持ちは、とてもよく分かります。<br>
+          けれど実際にご葬儀を終えたご家族の多くが口にされるのは、「早めに聞いておいてよかった」という言葉です。
+        </p>
+        <ul class="jizen-merits">
+          <li><span><b>慌てずに済みます。</b>もしもの時、深夜の病院で葬儀社を探す必要がなくなります。連絡先ひとつで、あとはお任せいただけます。</span></li>
+          <li><span><b>費用を抑えられます。</b>落ち着いて内容を選べるため、事前にご相談いただいた方のほうが、結果として費用を抑えたお見送りになる傾向があります。</span></li>
+          <li><span><b>ご本人の希望を叶えられます。</b>好きだった音楽、呼びたい人、呼ばなくていい人。ご本人の想いを、そのまま形にできます。</span></li>
+        </ul>
+        <p style="font-size:.85em">
+          無料の会員登録をいただくと、ご希望内容とお見積りをお預かりします。<br>
+          ご相談・ご登録に費用は一切かかりません。館内のご見学だけでも歓迎です。
+        </p>
+        <div class="route-btns" style="margin-top:22px">
+          <a class="btn btn--main" href="#contact">事前相談を申し込む（無料）</a>
+          <a class="btn btn--line" href="#contact">会館を見学する</a>
+        </div>
+      </div>
+      <div class="jizen-ph rv">
+        <img src="https://www.biwako-memorial.jp/wp-content/uploads/2023/08/gallary3-2-728x504.jpg" alt="びわこメモリアルホールのロビー" loading="lazy">
       </div>
     </div>
   </div>
@@ -917,7 +1242,7 @@ a{color:inherit;text-decoration:none}
 </section>
 
 <!-- ========== ギャラリー ========== -->
-<section class="sec sec--tight">
+<section class="sec sec--tight" style="background:var(--white)">
   <div class="inner">
     <div class="sec-head rv">
       <span class="sec-en">Gallery</span>
@@ -937,6 +1262,55 @@ a{color:inherit;text-decoration:none}
   </div>
 </section>
 
+<!-- ========== 基礎知識 ========== -->
+<section class="sec guide" id="guide" style="background:var(--paper)">
+  <div class="inner">
+    <div class="sec-head rv">
+      <span class="sec-en">Guide</span>
+      <h2 class="sec-title">はじめて喪主になる方へ<br>知っておくと安心の基礎知識</h2>
+      <p class="sec-lead">聞きづらいこと、いまさら聞けないことを、先にお答えしておきます。</p>
+    </div>
+    <div class="guide-list">
+      <details class="rv" open>
+        <summary>家族葬と一般葬は、何が違うのですか？</summary>
+        <div class="guide-body">
+          <p>いちばんの違いは<b>「お呼びする範囲」</b>です。一般葬はご近所・お勤め先・お付き合いのあった方まで広くお呼びしますが、家族葬はご家族とごく近しいご親族だけでお見送りします。</p>
+          <p>参列者への気遣いや接待がないぶん、<b>故人様と向き合う時間をゆっくり取れる</b>のが家族葬の良さです。式の内容そのもの（お通夜・告別式・火葬）は、一般葬と変わりません。</p>
+          <div class="pt">迷ったら：「故人がお付き合いを大切にしていた方はどこまでか」で考えると、範囲を決めやすくなります。</div>
+        </div>
+      </details>
+      <details class="rv">
+        <summary>ご近所や親戚には、どう知らせればいいですか？</summary>
+        <div class="guide-body">
+          <p>家族葬の場合、<b>葬儀を終えたあとに「家族葬にて相済ませました」とお知らせする</b>のが一般的です。事前に広くお知らせすると、参列やお香典のご辞退の説明が難しくなるためです。</p>
+          <p>お呼びしない方への文面の書き方、町内会への伝え方なども、私たちがひな形をご用意してお手伝いします。</p>
+        </div>
+      </details>
+      <details class="rv">
+        <summary>香典は断ってもいいのですか？</summary>
+        <div class="guide-body">
+          <p>構いません。最近の家族葬では<b>「御香典・御供花は謹んでご辞退申し上げます」</b>とお伝えするご家族が多くいらっしゃいます。香典返しの手配が不要になり、ご家族の負担も軽くなります。</p>
+          <p>いただく場合・ご辞退する場合それぞれの作法もご案内しますので、ご安心ください。</p>
+        </div>
+      </details>
+      <details class="rv">
+        <summary>葬儀に呼ばなかった方から、後から連絡が来たら？</summary>
+        <div class="guide-body">
+          <p>ご葬儀の後、ご自宅への弔問を希望される方は少なくありません。<b>「四十九日までの間に、日を決めてお受けする」</b>形にすると、ご家族の負担を抑えながら丁寧にご対応できます。</p>
+          <p>弔問をお受けする際のお茶やお返しの準備についても、アフターサポートでご相談いただけます。</p>
+        </div>
+      </details>
+      <details class="rv">
+        <summary>葬儀費用は、誰が・いつ払うものですか？</summary>
+        <div class="guide-body">
+          <p>一般的には喪主様がお支払いになり、後日、相続財産から精算されるケースが多くあります。<b>故人様の預金は亡くなられた後いったん凍結されますが、葬儀費用のための仮払い制度もあります。</b></p>
+          <p>当会館は現金のほかクレジットカード・電子マネーにも対応し、お支払いのタイミングもご相談いただけます。相続のご相談・司法書士のご紹介も可能です。</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
 <!-- ========== FAQ ========== -->
 <section class="sec" id="faq" style="background:var(--white)">
   <div class="inner">
@@ -948,6 +1322,10 @@ a{color:inherit;text-decoration:none}
       <details class="rv" open>
         <summary>まだ何も決まっていないのですが、電話しても大丈夫ですか？</summary>
         <div class="faq-a">もちろんです。「今どうすればいいか分からない」という段階でのお電話がいちばん多いです。お電話の時点でご契約は一切発生しません。まずは状況をお聞かせください。</div>
+      </details>
+      <details class="rv">
+        <summary>病院から紹介された葬儀社に頼まないといけませんか？</summary>
+        <div class="faq-a">いいえ。病院からのご紹介を断っても、まったく問題ありません。搬送だけを依頼して、葬儀は別の葬儀社に頼むこともできます。ご家族が納得して選ぶことが、いちばん大切です。</div>
       </details>
       <details class="rv">
         <summary>他社と相見積もりを取っても構いませんか？</summary>
@@ -1061,31 +1439,29 @@ a{color:inherit;text-decoration:none}
           <li><a href="#plans">火葬式プラン</a></li>
           <li><a href="#plans">一日葬プラン</a></li>
           <li><a href="#plans">家族葬プラン</a></li>
-          <li><a href="#plans">法要プラン</a></li>
-          <li><a href="#plans">選べるオプション</a></li>
+          <li><a href="#sim">費用シミュレーション</a></li>
           <li><a href="#access">お支払い方法</a></li>
         </ul>
       </div>
       <div>
         <h4>初めての方へ</h4>
         <ul>
+          <li><a href="#moshimo">もしもの時、まず何を</a></li>
           <li><a href="#flow">ご葬儀の流れ</a></li>
+          <li><a href="#guide">喪主の基礎知識</a></li>
           <li><a href="#reasons">選ばれる理由</a></li>
-          <li><a href="#reasons">他社との違い</a></li>
           <li><a href="#faq">よくある質問</a></li>
-          <li><a href="#reasons">葬儀場の選び方</a></li>
           <li><a href="#voices">お客様の声・葬儀事例</a></li>
         </ul>
       </div>
       <div>
         <h4>お問い合わせ</h4>
         <ul>
+          <li><a href="#jizen">事前相談（無料）</a></li>
           <li><a href="#contact">無料資料請求</a></li>
           <li><a href="#contact">無料会員登録</a></li>
-          <li><a href="#contact">お問い合わせ</a></li>
           <li><a href="#contact">供花注文書</a></li>
           <li><a href="#contact">葬儀後アフターケア</a></li>
-          <li><a href="#contact">アルバイト・パート求人</a></li>
           <li><a href="#contact">会社概要</a></li>
         </ul>
       </div>
@@ -1100,24 +1476,37 @@ a{color:inherit;text-decoration:none}
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M6 3h4l2 5-2.5 1.8a13 13 0 006.7 6.7L18 14l5 2v4a2 2 0 01-2 2C11.6 22 2 12.4 2 5a2 2 0 012-2z"/></svg>
     <b>24時間 電話相談</b>
   </a>
-  <a href="#plans">
+  <a href="#sim">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 2v20M17 6H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
-    料金プラン
+    費用の目安
   </a>
-  <a href="#contact">
+  <a href="#jizen">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 6 10-6"/></svg>
-    無料資料請求
+    事前相談
   </a>
 </nav>
 
 <script>
+// 文字サイズ切替（50代以上向け・記憶する）
+(function(){
+  var std=document.getElementById('fsStd'), lg=document.getElementById('fsLg');
+  function apply(large){
+    document.documentElement.setAttribute('data-fs', large?'large':'std');
+    std.classList.toggle('on',!large); lg.classList.toggle('on',large);
+    std.setAttribute('aria-pressed',!large); lg.setAttribute('aria-pressed',large);
+    try{localStorage.setItem('bmh-fs',large?'large':'std')}catch(e){}
+  }
+  std.addEventListener('click',function(){apply(false)});
+  lg.addEventListener('click',function(){apply(true)});
+  try{if(localStorage.getItem('bmh-fs')==='large')apply(true)}catch(e){}
+})();
+
 // ハンバーガー
 (function(){
   var b=document.getElementById('burger'), n=document.getElementById('gnav');
   if(!b) return;
   b.addEventListener('click',function(){
     var on=n.classList.toggle('on');
-    // ヘッダー（緊急バー含む）の高さぶんだけメニュー上部を空ける
     if(on){
       n.style.paddingTop=(document.querySelector('.hd').getBoundingClientRect().bottom+20)+'px';
     }
@@ -1131,6 +1520,46 @@ a{color:inherit;text-decoration:none}
       b.setAttribute('aria-expanded','false');document.body.style.overflow='';
     }
   });
+})();
+
+// 費用シミュレーション
+// data-check="price": 変動費の目安額。実額に合わせて必ず調整してください。
+(function(){
+  var SIM_RATES={
+    plans:{
+      kaso:  {label:'火葬式プラン（定額・追加料金なし）',  min:15, max:15, disp:'15万円'},
+      ichi:  {label:'一日葬プラン（定額・追加料金なし）',  min:25, max:40, disp:'25〜40万円'},
+      kazoku:{label:'家族葬プラン（定額・追加料金なし）',  min:38, max:50, disp:'38〜50万円'}
+    },
+    kasoba:{min:1,max:3},          // 火葬場使用料の目安（万円）
+    rel:{min:10,max:20},           // お布施（ご紹介の場合）の目安（万円）
+    mealPerHead:{min:0.5,max:0.8}  // お食事・返礼品 1名あたりの目安（万円）
+  };
+  var numEl=document.getElementById('simNum'), numOut=document.getElementById('simNumOut');
+  if(!numEl) return;
+  function calc(){
+    var planKey=(document.querySelector('input[name="simplan"]:checked')||{}).value||'ichi';
+    var rel=(document.querySelector('input[name="simrel"]:checked')||{}).value==='yes';
+    var n=parseInt(numEl.value,10);
+    var p=SIM_RATES.plans[planKey];
+    var mealMin=(planKey==='kaso')?0:Math.round(n*SIM_RATES.mealPerHead.min);
+    var mealMax=(planKey==='kaso')?0:Math.round(n*SIM_RATES.mealPerHead.max);
+    var relMin=rel?SIM_RATES.rel.min:0, relMax=rel?SIM_RATES.rel.max:0;
+    var totMin=p.min+SIM_RATES.kasoba.min+relMin+mealMin;
+    var totMax=p.max+SIM_RATES.kasoba.max+relMax+mealMax;
+    numOut.textContent=n+'名';
+    document.getElementById('simRowPlan').textContent=p.label;
+    document.getElementById('simValPlan').textContent=p.disp;
+    document.getElementById('simValKaso').textContent=SIM_RATES.kasoba.min+'〜'+SIM_RATES.kasoba.max+'万円';
+    document.getElementById('simRowRel').textContent=rel?'お布施（ご紹介の場合の目安）':'お布施（お願いしない）';
+    document.getElementById('simValRel').textContent=rel?(relMin+'〜'+relMax+'万円'):'0円';
+    document.getElementById('simValMeal').textContent=(mealMax===0)?'―':(mealMin+'〜'+mealMax+'万円');
+    document.getElementById('simTotal').textContent=totMin+'〜'+totMax+'万円';
+  }
+  document.getElementById('simPlan').addEventListener('change',calc);
+  document.getElementById('simRel').addEventListener('change',calc);
+  numEl.addEventListener('input',calc);
+  calc();
 })();
 
 // スクロール出現
