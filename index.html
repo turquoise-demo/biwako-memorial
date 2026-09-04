@@ -263,15 +263,12 @@ a{color:inherit;text-decoration:none}
 
 /* ============ ヒーロー ============ */
 .hero{position:relative;min-height:min(86vh,740px);display:flex;align-items:center;overflow:hidden}
-.hero-bg{position:absolute;inset:0}
-.hero-bg i{
-  position:absolute;inset:0;background-size:cover;background-position:center;
-  opacity:0;animation:heroFade 21s infinite;
+.hero-bg{position:absolute;inset:0;background:url(videos/dusk.jpg) center/cover}
+.hero-bg video{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  opacity:0;transition:opacity 1.8s ease;
 }
-.hero-bg i:nth-child(1){background-image:url(https://www.biwako-memorial.jp/wp-content/uploads/2023/08/storyslide2.jpg);animation-delay:0s}
-.hero-bg i:nth-child(2){background-image:url(https://www.biwako-memorial.jp/wp-content/uploads/2023/08/storyslide3.jpg);animation-delay:7s}
-.hero-bg i:nth-child(3){background-image:url(https://www.biwako-memorial.jp/wp-content/uploads/2023/08/storyslide4.jpg);animation-delay:14s}
-@keyframes heroFade{0%{opacity:0;transform:scale(1.05)}6%{opacity:1}36%{opacity:1}43%{opacity:0}100%{opacity:0;transform:scale(1)}}
+.hero-bg video.on{opacity:1}
 .hero-bg::after{
   content:"";position:absolute;inset:0;
   background:linear-gradient(100deg,rgba(58,48,38,.74) 0%,rgba(58,48,38,.52) 46%,rgba(58,48,38,.18) 100%);
@@ -506,7 +503,18 @@ a{color:inherit;text-decoration:none}
 }
 .jizen-merits b{color:var(--brown-dd)}
 .jizen-ph{border-radius:6px;overflow:hidden;box-shadow:var(--shadow-l)}
-.jizen-ph img{width:100%;height:100%;object-fit:cover;aspect-ratio:4/3}
+.jizen-ph img,.jizen-ph video{width:100%;height:100%;object-fit:cover;aspect-ratio:4/3;display:block}
+
+/* ============ 映像セクション ============ */
+.films{background:var(--beige-l)}
+.film-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.film{border-radius:5px;overflow:hidden;background:#000;position:relative}
+.film video{width:100%;aspect-ratio:16/10;object-fit:cover;display:block}
+.film span{
+  position:absolute;left:0;right:0;bottom:0;padding:22px 14px 10px;color:#fff;font-size:.78em;
+  letter-spacing:.06em;background:linear-gradient(transparent,rgba(0,0,0,.55));font-family:var(--mincho)
+}
+.films .note-c{text-align:center;font-size:.74em;color:var(--text-l);margin-top:14px}
 
 /* ============ 声 ============ */
 .voices{background:var(--paper)}
@@ -589,11 +597,12 @@ a{color:inherit;text-decoration:none}
 
 /* ============ 最終CTA ============ */
 .cta{
-  position:relative;color:#fff;text-align:center;padding:96px 0;
-  background:url(https://www.biwako-memorial.jp/wp-content/uploads/2023/08/27464296_m.jpg) center/cover fixed
+  position:relative;color:#fff;text-align:center;padding:96px 0;overflow:hidden;
+  background:url(videos/ojigi.jpg) center/cover
 }
-.cta::before{content:"";position:absolute;inset:0;background:linear-gradient(rgba(58,48,38,.86),rgba(58,48,38,.78))}
-.cta-in{position:relative;z-index:1}
+.cta-vid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cta::before{content:"";position:absolute;inset:0;background:linear-gradient(rgba(58,48,38,.84),rgba(58,48,38,.76));z-index:1}
+.cta-in{position:relative;z-index:2}
 .cta h2{font-family:var(--mincho);font-size:clamp(23px,4vw,36px);font-weight:500;line-height:1.6;margin-bottom:18px}
 .cta p{font-size:.9em;line-height:2;color:rgba(255,255,255,.85);margin-bottom:36px}
 .cta-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
@@ -647,6 +656,7 @@ a{color:inherit;text-decoration:none}
 }
 @media(max-width:900px){
   .reason-grid,.plan-grid,.flow-wrap{grid-template-columns:1fr 1fr}
+  .film-grid{grid-template-columns:1fr 1fr}
   .inc-grid{grid-template-columns:repeat(2,1fr)}
   .access-grid,.jizen-grid{grid-template-columns:1fr;gap:32px}
   .ft-grid{grid-template-columns:1fr 1fr;gap:32px}
@@ -743,7 +753,10 @@ a{color:inherit;text-decoration:none}
 
 <!-- ========== ヒーロー ========== -->
 <section class="hero" id="top">
-  <div class="hero-bg"><i></i><i></i><i></i></div>
+  <div class="hero-bg" id="heroBg" data-videos="videos/dusk.mp4,videos/hall.mp4,videos/saidan.mp4,videos/sky.mp4">
+    <video muted playsinline preload="auto" poster="videos/dusk.jpg"></video>
+    <video muted playsinline preload="none"></video>
+  </div>
   <div class="inner hero-in">
     <span class="hero-badge">ただいま受付中／365日24時間対応</span>
     <h1>「ありがとう」を、<br>いちばん近い場所から。</h1>
@@ -1193,7 +1206,9 @@ a{color:inherit;text-decoration:none}
         </div>
       </div>
       <div class="jizen-ph rv">
-        <img src="https://www.biwako-memorial.jp/wp-content/uploads/2023/08/gallary3-2-728x504.jpg" alt="びわこメモリアルホールのロビー" loading="lazy">
+        <video class="lazyvid" muted loop playsinline preload="none" poster="videos/soudan.jpg" aria-label="事前相談の様子（イメージ映像）">
+          <source src="videos/soudan.mp4" type="video/mp4">
+        </video>
       </div>
     </div>
   </div>
@@ -1259,6 +1274,36 @@ a{color:inherit;text-decoration:none}
       <a href="#"><img src="https://www.biwako-memorial.jp/wp-content/uploads/2023/08/storyslide7-1-728x504.jpg" alt="館内 待合" loading="lazy"></a>
       <a href="#"><img src="https://www.biwako-memorial.jp/wp-content/uploads/2023/08/gallary2-2-728x504.jpg" alt="供花" loading="lazy"></a>
     </div>
+  </div>
+</section>
+
+<!-- ========== 映像でみる しつらえ ========== -->
+<section class="sec sec--tight films">
+  <div class="inner">
+    <div class="sec-head rv">
+      <span class="sec-en">Films</span>
+      <h2 class="sec-title">映像でみる、お見送りのしつらえ</h2>
+      <p class="sec-lead">ひとつひとつ、心を込めてご用意します。</p>
+    </div>
+    <div class="film-grid rv">
+      <div class="film">
+        <video class="lazyvid" muted loop playsinline preload="none" poster="videos/flowers.jpg"><source src="videos/flowers.mp4" type="video/mp4"></video>
+        <span>白菊のしつらえ</span>
+      </div>
+      <div class="film">
+        <video class="lazyvid" muted loop playsinline preload="none" poster="videos/hanaya.jpg"><source src="videos/hanaya.mp4" type="video/mp4"></video>
+        <span>花祭壇づくり</span>
+      </div>
+      <div class="film">
+        <video class="lazyvid" muted loop playsinline preload="none" poster="videos/shoko.jpg"><source src="videos/shoko.mp4" type="video/mp4"></video>
+        <span>ご焼香</span>
+      </div>
+      <div class="film">
+        <video class="lazyvid" muted loop playsinline preload="none" poster="videos/gassho.jpg"><source src="videos/gassho.mp4" type="video/mp4"></video>
+        <span>合掌</span>
+      </div>
+    </div>
+    <p class="note-c rv">※ 映像はイメージです。</p>
   </div>
 </section>
 
@@ -1387,6 +1432,9 @@ a{color:inherit;text-decoration:none}
 
 <!-- ========== 最終CTA ========== -->
 <section class="cta" id="contact">
+  <video class="cta-vid lazyvid" muted loop playsinline preload="none" poster="videos/ojigi.jpg" aria-hidden="true">
+    <source src="videos/ojigi.mp4" type="video/mp4">
+  </video>
   <div class="inner cta-in">
     <h2>迷われているうちに、<br>お電話いただいて構いません。</h2>
     <p>
@@ -1560,6 +1608,44 @@ a{color:inherit;text-decoration:none}
   document.getElementById('simRel').addEventListener('change',calc);
   numEl.addEventListener('input',calc);
   calc();
+})();
+
+// ヒーロー動画ローテーション（2枚のvideoをクロスフェード）
+(function(){
+  var bg=document.getElementById('heroBg');
+  if(!bg || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var srcs=bg.getAttribute('data-videos').split(',');
+  var vids=bg.querySelectorAll('video'), cur=0, idx=0;
+  function show(v){ vids.forEach(function(x){x.classList.remove('on')}); v.classList.add('on'); }
+  function load(v,i){ v.src=srcs[i]; v.load(); }
+  load(vids[0],0);
+  vids[0].addEventListener('canplay',function once(){ vids[0].removeEventListener('canplay',once); vids[0].play().catch(function(){}); show(vids[0]); });
+  setInterval(function(){
+    idx=(idx+1)%srcs.length;
+    var next=vids[1-cur];
+    load(next,idx);
+    next.addEventListener('canplay',function once(){
+      next.removeEventListener('canplay',once);
+      next.play().catch(function(){});
+      show(next); cur=1-cur;
+    });
+  },8000);
+})();
+
+// 画面に入ったら再生する動画（事前相談・CTA・映像セクション）
+(function(){
+  var vids=document.querySelectorAll('video.lazyvid');
+  if(!vids.length) return;
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches) return; // ポスター表示のまま
+  if(!('IntersectionObserver' in window)){ vids.forEach(function(v){v.play().catch(function(){})}); return; }
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      var v=e.target;
+      if(e.isIntersecting){ if(v.preload==='none'){v.preload='auto';v.load()} v.play().catch(function(){}); }
+      else{ v.pause(); }
+    });
+  },{threshold:.2});
+  vids.forEach(function(v){io.observe(v)});
 })();
 
 // スクロール出現
